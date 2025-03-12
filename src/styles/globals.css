@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background-color: #a3755d;
+    font-family: monospace;
+    font-size: 30px
+}
+
+h1 {
+   font-size: 60px; 
+}
+
+#dynamicBooks {
+    width: 400px;
+    height: auto;
+    max-width: 100%
+}
+
+.padded-btn {
+    padding: 20px 30px
+}
