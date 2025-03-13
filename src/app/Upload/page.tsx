@@ -78,7 +78,7 @@ export default function Page () {
         setText(""); // Clear input
         setError(null); // Reset error state
       } else {
-        setError(data.error || "An unknown error occurred");
+        setError(data.error ?? "An unknown error occurred");
       }
     } catch (error) {
       console.error("Error uploading text:", error);
@@ -115,10 +115,10 @@ export default function Page () {
         
         
         <div>
-            <input type="text" value={input1} onChange={handleInputChange(setInput1)} placeholder="Input 1"/>
-            <input type="text" value={input2} onChange={handleInputChange(setInput2)} placeholder="Input 2"/>
-            <input type="text" value={input3} onChange={handleInputChange(setInput3)} placeholder="Input 3"/>
-            <input type="text" value={input4} onChange={handleInputChange(setInput4)} placeholder="Input 4"/>
+            <input type="text" value={input1} onChange={handleInputChange(setInput1)} placeholder="Title"/>
+            <input type="text" value={input2} onChange={handleInputChange(setInput2)} placeholder="Author"/>
+            <input type="text" value={input3} onChange={handleInputChange(setInput3)} placeholder="ISBN"/>
+            <input type="text" value={input4} onChange={handleInputChange(setInput4)} placeholder="Notes"/>
             {/*
             <input type="file" accept="image/*" onChange={handleImageChange} />
             {imagePreview && <img src={imagePreview} alt="Selected Image" />}
@@ -126,7 +126,7 @@ export default function Page () {
         </div>
         
 
-        {/*}
+        {/*
         <input 
         type="file" 
         accept="image/*" 
