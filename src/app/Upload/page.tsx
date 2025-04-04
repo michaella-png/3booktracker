@@ -1,31 +1,44 @@
 "use client";
-
-import { useState, ChangeEvent } from "react";
-/*
-export default function Page (){
-  return <main>
-    <h1>burger</h1>
-  </main>
-  console.log("this works");
-<p>"Testing123"</p>
-}
-*/
+import { useState, useEffect, ChangeEvent } from "react";
+import uploadData from "src/app/api/upload-stuff/upload";
+import { useRouter } from "next/navigation";
 
 type ReturnData = {
   message: string;
   error?: string;
 };
 
-export default function Page () {
+export default function Page() {
+  /*const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");*/
+  const [bookTitle, setbookTitle] = useState('');
+  const [author, setauthor] = useState('');
+  const [isbn, setisbn] = useState('');
+  const [notes, setnotes] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    // This hook will run after the component is mounted on the client side
+    // Any code that interacts with the browser (e.g., navigation, DOM manipulation) should go here
+  }, []); // Empty dependency array ensures it runs only once, after initial render
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const result = await uploadData(bookTitle, author, isbn, notes);
+    console.log(result); // Handle the result as needed
+    router.push("/"); // Redirect to the home page after submission, not needed but good to have as example
+  };
+
+/*export default function Page () {
   const [text, setText] = useState<string>(""); // To track the input text
   const [loading, setLoading] = useState<boolean>(false); // To handle loading state
   const [error, setError] = useState<string | null>(null); // To show any error messages
   const [successMessage, setSuccessMessage] = useState<string | null>(null); // To show success message
   
-  const [input1, setInput1] = useState('');
-  const [input2, setInput2] = useState('');
-  const [input3, setInput3] = useState('');
-  const [input4, setInput4] = useState('');
+  const [bookTitle, setInput1] = useState('');
+  const [author, setInput2] = useState('');
+  const [isbn, setInput3] = useState('');
+  const [notes, setInput4] = useState('');
   //const [image, setImage] = useState<File | null>(null);
   //const [imagePreview, setImagePreview] = useState<string | null>(null);
 
@@ -45,48 +58,8 @@ export default function Page () {
           reader.readAsDataURL(file);
       } else {
           setImagePreview(null);
-      }
-        
+      }   
   */
-  const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setText(e.target.value);
-  };
-
-  const handleButtonClick = async () => {
-    if (text.trim() === "") {
-      alert("Please enter some text.");
-      return;
-    }
-
-    setLoading(true); // Start loading
-
-    try {
-      const response = await fetch("/api/upload-stuff", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",  // Use JSON for request body
-        },
-        body: JSON.stringify({
-          content: text,
-        }),
-      });
-
-      const data = await response.json() as ReturnData;
-
-      if (response.ok) {
-        setSuccessMessage(data.message); // Show success message
-        setText(""); // Clear input
-        setError(null); // Reset error state
-      } else {
-        setError(data.error ?? "An unknown error occurred");
-      }
-    } catch (error) {
-      console.error("Error uploading text:", error);
-      setError("An error occurred while uploading the text.");
-    } finally {
-      setLoading(false); // End loading state
-    }
-  }
 
 /*
   const ImageUpload: React.FC = () => {
@@ -107,96 +80,35 @@ export default function Page () {
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-semibold text-center mb-4">Upload Book</h1>
         
-        {/* Display any error message */}
+      
+        {/* Display any error message 
         {error && <div className="alert alert-error mb-4"><span>{error}</span></div>}
-
-        {/* Display success message */}
+        */}
+        {/* Display success message 
         {successMessage && <div className="alert alert-success mb-4"><span>{successMessage}</span></div>}
-        
+        */}
         
         <div>
-            <input type="text" value={input1} onChange={handleInputChange(setInput1)} placeholder="Title"/>
-            <input type="text" value={input2} onChange={handleInputChange(setInput2)} placeholder="Author"/>
-            <input type="text" value={input3} onChange={handleInputChange(setInput3)} placeholder="ISBN"/>
-            <input type="text" value={input4} onChange={handleInputChange(setInput4)} placeholder="Notes"/>
+          <form onSubmit={handleSubmit}>
+            <input type="text" value={bookTitle} onChange={(e) => setbookTitle(e.target.value)} placeholder="Title" required/>
+            <input type="text" value={author} onChange={(e) => setauthor(e.target.value)} placeholder="Author" required/>
+            <input type="text" value={isbn} onChange={(e) => setisbn(e.target.value)} placeholder="ISBN" required/>
+            <input type="text" value={notes} onChange={(e) => setnotes(e.target.value)} placeholder="Notes"/>
+            <button type="submit">Upload</button>
+          </form>
+        </div>
             {/*
             <input type="file" accept="image/*" onChange={handleImageChange} />
             {imagePreview && <img src={imagePreview} alt="Selected Image" />}
-            */}
-        </div>
-        
 
-        {/*
-        <input 
-        type="file" 
-        accept="image/*" 
-        onChange={handleImageChange} 
-        />
-
-         {selectedImage && (
-        <div>
-          <h4>Selected Image:</h4>
-          <img 
-            src={URL.createObjectURL(selectedImage)} 
-            alt="Selected" 
-            style={{ width: '200px', height: 'auto' }} 
-          />
-        </div>
-         )}
-
-        <input
-          type="text"
-          value={text}
-          onChange={handleTextChange}
-          placeholder="Book Title"
-          className="input input-bordered w-full mb-4"
-        />
-
-  
-        <input
-          type="text"
-          value={text}
-          onChange={handleTextChange}
-          placeholder="Author"
-          className="input input-bordered w-full mb-4"
-        />
-      
-
-        <input
-          type="text"
-          value={text}
-          onChange={handleTextChange}
-          placeholder="ISBN"
-          className="input input-bordered w-full mb-4"
-        /> 
-
-        <input 
-          type="radio"
-          id="owned"
-        />
-        <label htmlFor="owned">Owned </label>
-
-        <input 
-          type="radio"
-          id="toBuy"
-        />
-        <label htmlFor="toBuy">To Buy </label>
-
-        <input
-          type="text"
-          value={text}
-          onChange={handleTextChange}
-          placeholder="Notes"
-          className="input input-bordered w-full mb-4"
-        />
-*/}
-        <button 
+            <button 
           onClick={handleButtonClick}
           className="btn btn-primary w-full"
           disabled={loading} // Disable button during loading
           >
           {loading? "Uploading..." : "Upload Text"}
         </button>
+            */}
          
         </div>
         </main>

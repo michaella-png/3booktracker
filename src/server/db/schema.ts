@@ -22,7 +22,10 @@ export const posts = createTable(
   "post",
   {
     id: integer("id").primaryKey().generatedByDefaultAsIdentity(),
-    content: varchar("content", { length: 256 }),
+    bookTitle: varchar ("bookTitle", {length: 256}),
+    author: varchar ("author", {length: 256}),
+    isbn: varchar ("isbn", {length: 256}),
+    notes: varchar("notes", { length: 256 }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
