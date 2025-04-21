@@ -5,6 +5,8 @@
 
 import { db } from "~/server/db";
 import { posts } from "~/server/db/schema";
+import UploadBook from "src/app/UploadBook";
+import HomePage from "src/app/homeBtn";
 
 export default async function main() {
   const data = await db.query.posts.findMany({
@@ -29,6 +31,9 @@ export default async function main() {
   // This forces the cards to be generated for each item in the arrayinstead of just one card for the whole array.
  
  return (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <h1 className="text-7xl">Collection Page</h1>
+    <HomePage></HomePage>
+    <UploadBook></UploadBook>
     {data.map((data,index) => (
       <div key={index} className="card w-96 bg-base-100 shadow-sm">
         <div className="card-body">

@@ -2,6 +2,8 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import uploadData from "src/app/api/upload-stuff/upload";
 import { useRouter } from "next/navigation";
+import CollectionPage from "src/app/collectionBtn";
+import HomePage from "src/app/homeBtn";
 
 type ReturnData = {
   message: string;
@@ -79,7 +81,8 @@ export default function Page() {
     <main className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h1 className="text-2xl font-semibold text-center mb-4">Upload Book</h1>
-        
+        <HomePage></HomePage>
+        <CollectionPage></CollectionPage>
       
         {/* Display any error message 
         {error && <div className="alert alert-error mb-4"><span>{error}</span></div>}

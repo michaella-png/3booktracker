@@ -1,6 +1,6 @@
 import Link from "next/link";
-{/*}
-const MyButton: React.FC = () => {
+
+const CollectionPage: React.FC = () => {
     return (
         <Link href="/Collection">
             <button className="padded-btn">Collection Page</button>
@@ -8,5 +8,4 @@ const MyButton: React.FC = () => {
     );
 };
 
-export default MyButton;
-*/}
+export default CollectionPage;

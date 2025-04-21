@@ -1,8 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import MyButton from "./MyButton";
+//import MyButton from "./MyButton";
 import UploadBook from "./UploadBook";
+import CollectionPage from "./collectionBtn";
 import { useState, ChangeEvent } from "react";
 
 type ReturnData = {
@@ -17,6 +18,8 @@ export default function HomePage() {
       <div className="bg-indigo-200 flex">
         <h1 className="text-7xl">StoryStack</h1>
         <UploadBook></UploadBook>
+        <CollectionPage></CollectionPage>
+
         
         
           <img  className= " object-scale-down" src="https://clipartcraft.com/images/books-clipart-transparent-background-2.png"
