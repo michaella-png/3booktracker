@@ -91,7 +91,7 @@ export default function Page() {
         {successMessage && <div className="alert alert-success mb-4"><span>{successMessage}</span></div>}
         */}
         
-        <div>
+        <div className="flex-grow">
           <form onSubmit={handleSubmit}>
             <input type="text" value={bookTitle} onChange={(e) => setbookTitle(e.target.value)} placeholder="Title" required/>
             <input type="text" value={author} onChange={(e) => setauthor(e.target.value)} placeholder="Author" required/>
@@ -99,6 +99,7 @@ export default function Page() {
             <input type="text" value={notes} onChange={(e) => setnotes(e.target.value)} placeholder="Notes"/>
             <button type="submit">Upload</button>
           </form>
+    
         </div>
             {/*
             <input type="file" accept="image/*" onChange={handleImageChange} />

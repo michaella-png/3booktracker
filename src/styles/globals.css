@@ -10,6 +10,10 @@ body {
 
 h1 {
    font-size: 60px; 
+   background-color: #ccb481;
+   color: #38200a;
+   font-family: "courier new";
+   font-weight: 550
 }
 
 #dynamicBooks {
@@ -21,3 +25,10 @@ h1 {
 .padded-btn {
     padding: 20px 30px
 }
+
+img {
+    width: 100%;
+    height: auto;
+    max-width: 40vw;
+    margin-left:20px;
+  }

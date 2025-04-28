@@ -20,18 +20,16 @@ export default function HomePage() {
         <UploadBook></UploadBook>
         <CollectionPage></CollectionPage>
 
+          <img className= "" src="https://clipartcraft.com/images/books-clipart-transparent-background-2.png"
+          alt="book stack"/>
         
-        
-          <img  className= " object-scale-down" src="https://clipartcraft.com/images/books-clipart-transparent-background-2.png"
-          alt="book stack" />
          <div className="card bg-base-300 rounded-box grid h-20 flex-grow place-items-center">
-        StoryStack is a free and intuitive web application designed to help book enthusiasts of 
-        all ages organize, track, and explore their book collections effortlessly. 
+        Welcome to StoryStack! Track the books you read, stack up your stories, and watch your library row! 
+        Whether you're a casual reader or a dedicated bookworm, StoryStack helps you keep your reading journey
+        organized-all in one simple, cozy place. Add thoughts, mark your progress, and rediscover your favorties anytime.
         </div>
         
       </div>
     </main>
   );
 }
-
-//id= "dynamicBooks" ????????

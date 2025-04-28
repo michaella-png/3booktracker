@@ -30,20 +30,23 @@ export default async function main() {
   //the biggest change done here is basically you need to wrap all of the  tailwind card stuff with the map function
   // This forces the cards to be generated for each item in the arrayinstead of just one card for the whole array.
  
- return (<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-    <h1 className="text-7xl">Collection Page</h1>
+ return (
+    <div>  
+    <h1 className="bg-[#FFFFF0]text-7xl pl-4 justify-center"> Collection Page</h1>
     <HomePage></HomePage>
     <UploadBook></UploadBook>
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
     {data.map((data,index) => (
       <div key={index} className="card w-96 bg-base-100 shadow-sm">
         <div className="card-body">
           <h2 className="card-title">{data.bookTitle}</h2>
           <p>{data.author}</p>
-          <div className="justify-end card-actions">
+          <div className="card-actions">
           </div>
-        </div>
+          </div>
       </div>
     ))}
+  </div>
   </div>
     );
   }
