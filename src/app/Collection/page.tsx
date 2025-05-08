@@ -13,6 +13,8 @@ export default async function main() {
     columns: {
       bookTitle: true,
       author: true,
+      notes: true,
+      isbn: true,
     },
   })
   
@@ -31,23 +33,28 @@ export default async function main() {
   // This forces the cards to be generated for each item in the arrayinstead of just one card for the whole array.
  
  return (
-    <div>  
-    <h1 className="bg-[#FFFFF0]text-7xl pl-4 justify-center"> Collection Page</h1>
-    <HomePage></HomePage>
-    <UploadBook></UploadBook>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="flex-col space-y-4 bg-bgcolor flex">
+      <h1 className="bg-[#ccb481] text-7xl pl-4 justify-center"> Collection Page</h1>
+      <div className="flex space-x-6 text-textcolor">
+      <HomePage></HomePage>
+      <UploadBook></UploadBook>
+      </div>
+    
+    
+    <div className="text-[#38200a] w-full px-10 py-4 bg-bgcolor grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
     {data.map((data,index) => (
-      <div key={index} className="card w-96 bg-base-100 shadow-sm">
-        <div className="card-body">
-          <h2 className="card-title">{data.bookTitle}</h2>
-          <p>{data.author}</p>
-          <div className="card-actions">
-          </div>
-          </div>
+      <div key={index} className="card bg-[#ccb481] rounded-lg w-96 shadow-sm p-4 m-2">
+        <div className="card-body text-lg">
+        <p className="card-title text-3xl">{data.bookTitle}</p>
+        <p>{data.author}</p>
+        <p>Notes: {data.notes}</p>
+        <p>ISBN: {data.isbn}</p>
+        <div className="card-actions">
+        </div>
+        </div>
       </div>
     ))}
   </div>
   </div>
     );
   }
-

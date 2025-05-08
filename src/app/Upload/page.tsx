@@ -78,42 +78,23 @@ export default function Page() {
 */
 
   return (
-    <main className="min-h-screen flex justify-center items-center bg-gray-100 p-4">
-      <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h1 className="text-2xl font-semibold text-center mb-4">Upload Book</h1>
+    <main className="font-mono">
+      <div className="flex-col bg-bgcolor flex min-h-screen">
+        <h1 className=" mb-4"> Upload Book</h1>
+        <div className="flex space-x-6 text-textcolor">
         <HomePage></HomePage>
         <CollectionPage></CollectionPage>
-      
-        {/* Display any error message 
-        {error && <div className="alert alert-error mb-4"><span>{error}</span></div>}
-        */}
-        {/* Display success message 
-        {successMessage && <div className="alert alert-success mb-4"><span>{successMessage}</span></div>}
-        */}
-        
-        <div className="flex-grow">
-          <form onSubmit={handleSubmit}>
-            <input type="text" value={bookTitle} onChange={(e) => setbookTitle(e.target.value)} placeholder="Title" required/>
-            <input type="text" value={author} onChange={(e) => setauthor(e.target.value)} placeholder="Author" required/>
-            <input type="text" value={isbn} onChange={(e) => setisbn(e.target.value)} placeholder="ISBN" required/>
-            <input type="text" value={notes} onChange={(e) => setnotes(e.target.value)} placeholder="Notes"/>
-            <button type="submit">Upload</button>
-          </form>
-    
         </div>
-            {/*
-            <input type="file" accept="image/*" onChange={handleImageChange} />
-            {imagePreview && <img src={imagePreview} alt="Selected Image" />}
-
-            <button 
-          onClick={handleButtonClick}
-          className="btn btn-primary w-full"
-          disabled={loading} // Disable button during loading
-          >
-          {loading? "Uploading..." : "Upload Text"}
-        </button>
-            */}
-         
+        
+        <div className="w-full bg-bgcolor">
+          <form onSubmit={handleSubmit}>
+            <input style={{ borderRadius: '5px'}} className="margin-elm" type="text" value={bookTitle} onChange={(e) => setbookTitle(e.target.value)} placeholder=" Title" required/>
+            <input style={{ borderRadius: '5px'}} className="margin-elm" type="text" value={author} onChange={(e) => setauthor(e.target.value)} placeholder=" Author" required/>
+            <input style={{ borderRadius: '5px'}} className="margin-elm" type="text" value={isbn} onChange={(e) => setisbn(e.target.value)} placeholder=" ISBN" required/>
+            <input style={{ borderRadius: '5px'}} className="margin-elm" type="text" value={notes} onChange={(e) => setnotes(e.target.value)} placeholder=" Notes"/>
+            <button style={{ borderRadius: '5px'}} className="margin-elm text-[#ffffff]" type="submit">Upload</button>
+          </form> 
+        </div>
         </div>
         </main>
        )
